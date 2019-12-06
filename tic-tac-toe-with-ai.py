@@ -1,19 +1,14 @@
-x = input("Enter cells: ")
+import random
 print("---------")
-print("| " + x[0] + " " + x[1] + " " + x[2] + " |")
-print("| " + x[3] + " " + x[4] + " " + x[5] + " |")
-print("| " + x[6] + " " + x[7] + " " + x[8] + " |")
+print("| " + "     " + " |")
+print("| " + "     " + " |")
+print("| " + "     " + " |")
 print("---------")
-field = [[x[0], x[1], x[2]], [x[3], x[4], x[5]], [x[6], x[7], x[8]]]
+field = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
 countX = 0
 countO = 0
-for i in range(3):
-    for j in range(3):
-        if field[i][j] == "X":
-            countX += 1
-        if field[i][j] == "O":
-            countO += 1
 
+who = True
 
 def XWin(field):
     if (field[0][0] == field[0][1] == field[0][2] == "X") or (field[1][0] == field[1][1] == field[1][2] == "X") or (
@@ -43,8 +38,8 @@ def OWin(field):
 
 
 def IsEmpty(field):
-    if field[0][0] == "_" or field[0][1] == "_" or field[0][2] == "_" or field[1][0] == "_" or field[1][1] == "_" or \
-            field[1][2] == "_" or field[2][0] == "_" or field[2][1] == "_" or field[2][2] == "_":
+    if field[0][0] == " " or field[0][1] == " " or field[0][2] == " " or field[1][0] == " " or field[1][1] == " " or \
+            field[1][2] == " " or field[2][0] == " " or field[2][1] == " " or field[2][2] == " ":
         return 1
     else:
         return 0
@@ -62,7 +57,7 @@ def EndGame(field):
 
 
 while True:
-    if (countX == countO):
+    if (who == True):
         try:
             a, b = map(int, input("Enter the coordinates: ").split())
         except ValueError:
@@ -80,21 +75,18 @@ while True:
             print("| " + field[2][0] + " " + field[2][1] + " " + field[2][2] + " |")
             print("---------")
             countX += 1
+            who = False
             if EndGame(field) == "X wins":
                 print("X wins")
                 break
             elif EndGame(field) == "Draw":
                 print("Draw")
                 break
-            elif EndGame(field) == "Game not finished":
-                print("Game not finished")
-                break
+
     else:
-        try:
-            a, b = map(int, input("Enter the coordinates: ").split())
-        except ValueError:
-            print("You should enter numbers!")
-            continue
+        print('Making move level "easy"')
+        a = random.randint(1, 3)
+        b = random.randint(1, 3)
         if (1 > a) or (a > 3) or (1 > b) or (b > 3):
             print("Coordinates should be from 1 to 3!")
         elif (field[abs(b - 3)][abs(a - 1)] == "X") or (field[abs(b - 3)][abs(a - 1)] == "O"):
@@ -107,12 +99,12 @@ while True:
             print("| " + field[2][0] + " " + field[2][1] + " " + field[2][2] + " |")
             print("---------")
             countO += 1
+            who = True
             if EndGame(field) == "O wins":
                 print("O wins")
                 break
             elif EndGame(field) == "Draw":
                 print("Draw")
                 break
-            elif EndGame(field) == "Game not finished":
-                print("Game not finished")
-                break
+
+
