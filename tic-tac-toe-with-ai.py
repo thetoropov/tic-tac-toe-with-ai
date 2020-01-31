@@ -83,27 +83,27 @@ class MediumStrategy(Strategy):
             count1 += 1
         if fld[0][0] == ' ':
             count2 += 1
-            bestI = 0
+            best_i = 0
             best_j = 0
         if fld[1][1] == symbol:
             count1 += 1
         if fld[1][1] == ' ':
             count2 += 1
-            bestI = 1
+            best_i = 1
             best_j = 1
         if fld[2][2] == symbol:
             count1 += 1
         if fld[2][2] == ' ':
             count2 += 1
-            bestI = 2
+            best_i = 2
             best_j = 2
         if count2 == 1 and count1 == 2:
-            x = bestI
+            x = best_i
             y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
         if count2 == 1 and count1 == 0:
-            x = bestI
+            x = best_i
             y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
@@ -112,11 +112,11 @@ class MediumStrategy(Strategy):
             count1 += 1
         if fld[0][2] == ' ':
             count2 += 1
-            bestI = 0
+            best_i = 0
             best_j = 2
         if fld[1][1] == ' ':
             count2 += 1
-            bestI = 1
+            best_i = 1
             best_j = 1
         if fld[1][1] == symbol:
             count1 += 1
@@ -124,15 +124,15 @@ class MediumStrategy(Strategy):
             count1 += 1
         if fld[2][0] == ' ':
             count2 += 1
-            bestI = 2
+            best_i = 2
             best_j = 0
         if count2 == 1 and count1 == 2:
-            x = bestI
+            x = best_i
             y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
         if count2 == 1 and count1 == 0:
-            x = bestI
+            x = best_i
             y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
