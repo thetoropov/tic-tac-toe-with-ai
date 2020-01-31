@@ -39,131 +39,23 @@ class MediumStrategy(Strategy):
         x = 0
         y = 0
         print('Making move level "medium"')
-        """
-       for i in range(3):
-            if fld[i][0] == fld[i][1] == symbol and fld[i][2] == " ":
-                x = 3
-                y = abs(i - 3)
-                count += 1
-                break
-            if fld[i][1] == fld[i][2] == symbol and fld[i][0] == " ":
-                x = 1
-                y = abs(i - 3)
-                count += 1
-                break
-            if fld[i][0] == fld[i][2] == symbol and fld[i][1] == " ":
-                x = 2
-                y = abs(i - 3)
-                count += 1
-                break
-            if fld[0][i] == fld[1][i] == symbol and fld[2][i] == " ":
-                x = abs(-1 - i)
-                y = 1
-                count += 1
-                break
-            if fld[1][i] == fld[2][i] == symbol and fld[0][i] == " ":
-                x = abs(-1 - i)
-                y = 3
-                count += 1
-                break
-            if fld[0][i] == fld[2][i] == symbol and fld[1][i] == " ":
-                x = abs(-1 - i)
-                y = 2
-                count += 1
-                break
-
-        if fld[0][0] == fld[1][1] == symbol and fld[2][2] == " ":
-            x = 3
-            y = 1
-            count += 1
-        elif fld[0][0] == fld[2][2] == symbol and fld[1][1] == " ":
-            x = 2
-            y = 2
-            count += 1
-        elif fld[1][1] == fld[2][2] == symbol and fld[0][0] == " ":
-            x = 1
-            y = 3
-            count += 1
-        elif fld[2][0] == fld[1][1] == symbol and fld[0][2] == " ":
-            x = 3
-            y = 3
-            count += 1
-        elif fld[2][0] == fld[0][2] == symbol and fld[1][1] == " ":
-            x = 2
-            y = 2
-            count += 1
-        elif fld[1][1] == fld[0][2] == symbol and fld[2][0] == " ":
-            x = 1
-            y = 1
-            count += 1
-        elif fld[0][0] == fld[1][1] != symbol and fld[0][0] == fld[1][1] != " " and fld[2][2] == " ":
-            x = 3
-            y = 1
-            count += 1
-        elif fld[0][0] == fld[2][2] != symbol and fld[0][0] == fld[2][2] != " " and fld[1][1] == " ":
-            x = 2
-            y = 2
-            count += 1
-        elif fld[1][1] == fld[2][2] != symbol and fld[1][1] == fld[2][2] != " " and fld[0][0] == " ":
-            x = 1
-            y = 3
-            count += 1
-        elif fld[2][0] == fld[1][1] != symbol and fld[2][0] == fld[1][1] != " " and fld[2][0] == " ":
-            x = 3
-            y = 3
-            count += 1
-        elif fld[2][0] == fld[0][2] != symbol and fld[2][0] == fld[0][2] != " " and fld[1][1] == " ":
-            x = 2
-            y = 2
-            count += 1
-        elif fld[1][1] == fld[0][2] != symbol and fld[1][1] == fld[0][2] != " " and fld[2][0] == " ":
-            x = 1
-            y = 1
-            count += 1
-        if count == 0:
-            for i in range(3):
-                if fld[i][0] != symbol and fld[i][1] != symbol and fld[i][0] != " " and fld[i][1] != " " and fld[i][2] == " ":
-                    x = 3
-                    y = abs(i - 3)
-                    break
-                if fld[i][1] != symbol and fld[i][2] != symbol and fld[i][1] != " " and fld[i][2] != " " and fld[i][0] == " ":
-                    x = 1
-                    y = abs(i - 3)
-                    break
-                if fld[i][0] != symbol and fld[i][2] != symbol and fld[i][0] != " " and fld[i][2] != " " and fld[i][1] == " ":
-                    x = 2
-                    y = abs(i - 3)
-                    break
-                if fld[0][i] != symbol and fld[1][i] != symbol and fld[0][i] != " " and fld[1][i] != " " and fld[2][i] == " ":
-                    x = abs(-1 - i)
-                    y = 1
-                    break
-                if fld[1][i] != symbol and fld[2][i] != symbol and fld[1][i] != " " and fld[2][i] != " " and fld[0][i] == " ":
-                    x = abs(-1 - i)
-                    y = 3
-                    break
-                if fld[0][i] != symbol and fld[2][i] != symbol and fld[0][i] != " " and fld[2][i] != " " and fld[1][i] == " ":
-                    x = abs(-1 - i)
-                    y = 2
-                    break
-                    """
         for i in range(3):
             count1 = count2 = 0
-            bestJ = 0
+            best_j = 0
             for j in range(3):
                 if fld[i][j] == symbol:
                     count1 += 1
                 if fld[i][j] == ' ':
-                    count2 += 1;
-                    bestJ = j
+                    count2 += 1
+                    best_j = j
             if count2 == 1 and count1 == 2:
                 x = i
-                y = bestJ
+                y = best_j
                 coord_ai = [x, y]
                 return self.reformat(coord_ai)
             if count2 == 1 and count1 == 0:
                 x = i
-                y = bestJ
+                y = best_j
                 coord_ai = [x, y]
                 return self.reformat(coord_ai)
 
@@ -174,14 +66,14 @@ class MediumStrategy(Strategy):
                     count1 += 1
                 if fld[j][i] == ' ':
                     count2 += 1
-                    bestJ = j
+                    best_j = j
             if count2 == 1 and count1 == 2:
-                x = bestJ
+                x = best_j
                 y = i
                 coord_ai = [x, y]
                 return self.reformat(coord_ai)
             if count2 == 1 and count1 == 0:
-                x = bestJ
+                x = best_j
                 y = i
                 coord_ai = [x, y]
                 return self.reformat(coord_ai)
@@ -192,27 +84,27 @@ class MediumStrategy(Strategy):
         if fld[0][0] == ' ':
             count2 += 1
             bestI = 0
-            bestJ = 0
+            best_j = 0
         if fld[1][1] == symbol:
             count1 += 1
         if fld[1][1] == ' ':
             count2 += 1
             bestI = 1
-            bestJ = 1
+            best_j = 1
         if fld[2][2] == symbol:
             count1 += 1
         if fld[2][2] == ' ':
             count2 += 1
             bestI = 2
-            bestJ = 2
+            best_j = 2
         if count2 == 1 and count1 == 2:
             x = bestI
-            y = bestJ
+            y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
         if count2 == 1 and count1 == 0:
             x = bestI
-            y = bestJ
+            y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
         count1 = count2 = 0
@@ -221,11 +113,11 @@ class MediumStrategy(Strategy):
         if fld[0][2] == ' ':
             count2 += 1
             bestI = 0
-            bestJ = 2
+            best_j = 2
         if fld[1][1] == ' ':
             count2 += 1
             bestI = 1
-            bestJ = 1
+            best_j = 1
         if fld[1][1] == symbol:
             count1 += 1
         if fld[2][0] == symbol:
@@ -233,15 +125,15 @@ class MediumStrategy(Strategy):
         if fld[2][0] == ' ':
             count2 += 1
             bestI = 2
-            bestJ = 0
+            best_j = 0
         if count2 == 1 and count1 == 2:
             x = bestI
-            y = bestJ
+            y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
         if count2 == 1 and count1 == 0:
             x = bestI
-            y = bestJ
+            y = best_j
             coord_ai = [x, y]
             return self.reformat(coord_ai)
 
@@ -251,60 +143,22 @@ class MediumStrategy(Strategy):
         return self.reformat(coord_ai)
 
 
-    """ def check_win(self, count_empties, count_my_symbols):
-        if count_empties != 1:
-            return False
-        elif count_my_symbols == 2:
-            return True
-        else:
-            return False
-
-    def is_row_win(self, fld, symbol, row):
-        count_empties = 0
-        count_my_symbols = 0
-        for i in range(3):
-            if fld[row][i] == " ":
-                count_empties += 1
-            if fld[row][i] == symbol:
-                count_my_symbols += 1
-        return self.check_win(count_empties, count_my_symbols)
-
-
-    def is_diag_win(self, fld, symbol, diag):
-        count_empties = 0
-        count_my_symbols = 0
-        for i in range(3):
-            pass
-
-
-    def is_column_win(self, fld, symbol, column):
-        count_empties = 0
-        count_my_symbols = 0
-        for i in range(3):
-            if fld[i][column] == " ":
-                count_empties += 1
-            if fld[i][column] == symbol:
-                count_my_symbols += 1
-        return self.check_win(count_empties,count_my_symbols)
-    """
-
-
 class HardStrategy(Strategy):
 
     def move(self, fld, symbol):
         print('Making move level "hard"')
-        bestScore = -1
-        bestI = 0
-        bestJ = 0
+        best_score = -1
+        best_i = 0
+        best_j = 0
         for i in range(3):
             for j in range(3):
                 if fld[i][j] == " ":
                     score = self.minimax(fld, i, j, 0, symbol)
-                    if bestScore == -1 or (bestScore < score):
-                        bestScore = score
-                        bestI = i
-                        bestJ = j
-        best = [bestI, bestJ]
+                    if best_score == -1 or (best_score < score):
+                        best_score = score
+                        best_i = i
+                        best_j = j
+        best = [best_i, best_j]
         return self.reformat(best)
 
     def reformat(self, best):
@@ -343,19 +197,19 @@ class HardStrategy(Strategy):
                     return "game not finished"
         return "draw"
 
-    def minimax(self, fld, curI, curJ, turn, symbol):
+    def minimax(self, fld, cur_i, cur_j, turn, symbol):
         board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
         for i in range(3):
             for j in range(3):
                 board[i][j] = fld[i][j]
         if turn == 0:
-            board[curI][curJ] = symbol
+            board[cur_i][cur_j] = symbol
         else:
             if symbol == "O":
-                board[curI][curJ] = "X"
+                board[cur_i][cur_j] = "X"
             else:
-                board[curI][curJ] = "O"
-        bestScore = -1
+                board[cur_i][cur_j] = "O"
+        best_score = -1
 
         if self.who_wins(board) == "wins":
             if turn == 0:
@@ -371,9 +225,9 @@ class HardStrategy(Strategy):
             for j in range(3):
                 if board[i][j] == " ":
                     score = self.minimax(board, i, j, abs(turn - 1), symbol)
-                    if bestScore == -1 or (turn == 1 and bestScore < score) or (turn == 0 and bestScore > score):
-                        bestScore = score
-        return bestScore
+                    if best_score == -1 or (turn == 1 and best_score < score) or (turn == 0 and best_score > score):
+                        best_score = score
+        return best_score
 
 
 class Player(object):
